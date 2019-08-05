@@ -1,0 +1,16 @@
+version: '2'
+volumes:
+    resin-data:
+services:
+  camera-test:
+    build: ./camera-test
+    volumes:
+      - 'resin-data:/data'
+    restart: always
+    privileged: true
+    network_mode: host
+    devices:
+      - "/dev/vchiq:/dev/vchiq"
+    labels:
+      io.balena.features.kernel-modules: '1'
+      io.balena.features.firmware: '1'
