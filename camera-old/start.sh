@@ -13,5 +13,5 @@ while : ; do
     echo "snapping a picture via raspistill -o /data/${FILENAME}"
     raspistill -o "/data/${FILENAME}"
   fi
-  sleep 10
+  sleep "${DELAY=10}"
 done
