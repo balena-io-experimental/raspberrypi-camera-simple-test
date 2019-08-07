@@ -2,8 +2,32 @@ version: '2'
 volumes:
     resin-data:
 services:
-  camera-test:
-    build: ./camera-test
+  camera-new:
+    build: ./camera-new
+    volumes:
+      - 'resin-data:/data'
+    restart: always
+    privileged: true
+    network_mode: host
+    devices:
+      - "/dev/vchiq:/dev/vchiq"
+    labels:
+      io.balena.features.kernel-modules: '1'
+      io.balena.features.firmware: '1'
+  camera-old:
+    build: ./camera-old
+    volumes:
+      - 'resin-data:/data'
+    restart: always
+    privileged: true
+    network_mode: host
+    devices:
+      - "/dev/vchiq:/dev/vchiq"
+    labels:
+      io.balena.features.kernel-modules: '1'
+      io.balena.features.firmware: '1'
+  camera-downgrade:
+    build: ./camera-downgrade
     volumes:
       - 'resin-data:/data'
     restart: always

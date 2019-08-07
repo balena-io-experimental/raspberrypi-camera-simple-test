@@ -1,0 +1,9 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:stretch-run-20190712
+
+RUN apt-get update && apt-get install libraspberrypi-bin/oldstable --allow-downgrades -y
+
+# Move app to filesystem
+COPY ./ ./
+
+# Start app
+CMD ["bash", "start.sh"]
